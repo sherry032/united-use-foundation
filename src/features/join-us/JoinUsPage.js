@@ -1,11 +1,15 @@
 import React, { useState } from 'react';
-import { TextField, Button, Container } from '@mui/material';
+import { TextField, Button, Container, Typography } from '@mui/material';
+import { createUser } from '../../services/users';
 
-function JoinUsPage() {
-  const [formData, setFormData] = useState({
+const defaultFormData = {
     name: '',
     email: ''
-  });
+};
+
+function JoinUsPage() {
+  const [formData, setFormData] = useState(defaultFormData);
+  const [showMsg, setShowMsg] = useState(false);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -17,26 +21,11 @@ function JoinUsPage() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    
-    const formDataEntries = Object.entries(formData);
-    const formParams = new URLSearchParams();
-    
-    formDataEntries.forEach(([key, value]) => {
-      formParams.append(key, value);
-    });
-  
+
     try {
-      const response = await fetch('https://script.google.com/macros/s/AKfycbwMYCzxSCx_DSMrT6Wsw0j2qvdwClTJy5KFaA9gw6o2oD_JjVRSTbt27SdoiWsk1YWG/exec', {
-        method: 'POST',
-        body: formParams,
-        mode: 'no-cors'
-      });
-  
-      if (response.ok) {
-        console.log('Form submitted successfully!');
-      } else {
-        console.error('Failed to submit form:', response.statusText);
-      }
+      const response = await createUser(formData);
+      setShowMsg(true);
+      setFormData(defaultFormData)
     } catch (error) {
       console.error('Error submitting form:', error);
     }
@@ -72,6 +61,9 @@ function JoinUsPage() {
           Submit
         </Button>
       </form>
+      {showMsg && <Typography sx={{color: "red", mt: 5}}>
+        Thanks for submitting the form.
+      </Typography>}
     </Container>
   );
 }
