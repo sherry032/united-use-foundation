@@ -1,5 +1,6 @@
 import Navigation from "./Navigation";
 import { Outlet } from "react-router-dom";
+import { Container } from "@mui/system";
 function AppLayout() {
     return (
         <>
@@ -7,7 +8,9 @@ function AppLayout() {
                 <Navigation/>
             </header>
             <main>
-                <Outlet />
+                <Container sx={{py: 5}}>
+                    <Outlet />
+                </Container>
             </main>
         </>
     );

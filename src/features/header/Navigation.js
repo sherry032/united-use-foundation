@@ -22,6 +22,10 @@ const routes = [
     name: "About us",
     path: "/about"
     },
+    {
+    name: "Join us",
+    path: "/join"
+    },
 ]
 
 const Navigation = () => {

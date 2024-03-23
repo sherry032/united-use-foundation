@@ -4,6 +4,7 @@ import { ThemeProvider } from '@mui/material/styles';
 import AppLayout from './features/header/AppLayout';
 import HomePage from './features/home/HomePage';
 import AboutPage from './features/about/About';
+import JoinUsPage from './features/join-us/JoinUsPage';
 import { createTheme } from '@mui/material/styles';
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
           <Route element={<AppLayout />}>
             <Route path="/" element={<HomePage />} />
             <Route path="/about" element={<AboutPage />} />
+            <Route path="/join" element={<JoinUsPage />} />
           </Route>
         </Routes>
       </Router>
