@@ -1,28 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
-import { useEffect } from 'react';
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { ThemeProvider } from '@mui/material/styles';
+import AppLayout from './features/header/AppLayout';
+import HomePage from './features/home/HomePage';
+import AboutPage from './features/about/About';
+import { createTheme } from '@mui/material/styles';
 
 function App() {
- const printFibonacci= ()=>{
-  let n1 = 0
-  let n2 = 1
-  let nextTerm
-  for(let i =1; i <= 7; i++) {
-    console.log(n1)
-    nextTerm = n1 + n2
-    n1 = n2
-    n2 = nextTerm
-  }
- }
+  const theme = createTheme();
 
- useEffect(()=>{
-  printFibonacci()
-  console.log(4 + 4 + "4" + 4+ 4 -4 +4)
- },[])
   return (
-    <div className="App">
-      hello
-    </div>
+    <ThemeProvider theme={theme}>
+      <Router>
+        <Routes>
+          <Route element={<AppLayout />}>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/about" element={<AboutPage />} />
+          </Route>
+        </Routes>
+      </Router>
+    </ThemeProvider>
   );
 }
 

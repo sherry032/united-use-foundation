@@ -9,10 +9,22 @@ import Drawer from '@mui/material/Drawer';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
-import { useMediaQuery } from '@mui/material';
+import { Box, useMediaQuery } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
+import logo from "./logo.jpg"
 
-const Navigation = ({ routes }) => {
+const routes = [
+    {
+    name: "Home",
+    path: "/"
+    },
+    {
+    name: "About us",
+    path: "/about"
+    },
+]
+
+const Navigation = () => {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
@@ -33,10 +45,13 @@ const Navigation = ({ routes }) => {
 
   return (
     <AppBar position="static">
-      <Toolbar>
-        <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-          Your Website
+      <Box sx={{bgcolor: "white", p: 3, display: "flex", alignItems: "center", gap: 3}}>
+        <img src={logo} alt="logo" style={{display: "inline-block", height: "80px", width: "80px"}}/>
+        <Typography variant="h4" sx={{ textTransform: "uppercase", color: "black", fontWeight: "bold" }}>
+          United use foundation
         </Typography>
+      </Box>
+      <Toolbar>
         {isMobile ? (
           <>
             <IconButton
