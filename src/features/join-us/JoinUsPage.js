@@ -45,7 +45,7 @@ function JoinUsPage() {
 
   return (
     <Container maxWidth="sm">
-      {/* <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit}>
         <TextField
           fullWidth
           margin="normal"
@@ -71,8 +71,7 @@ function JoinUsPage() {
         >
           Submit
         </Button>
-      </form> */}
-      <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdHf4LS7EtXCTo8avVyAkxWRls49Drd972r9zeTeu5TpSYphw/viewform?embedded=true" width="700" height="520" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+      </form>
     </Container>
   );
 }
