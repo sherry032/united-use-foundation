@@ -47,8 +47,8 @@ const Navigation = () => {
     <AppBar position="static">
       <Box sx={{bgcolor: "white", p: 3, display: "flex", alignItems: "center", gap: 3}}>
         <img src={logo} alt="logo" style={{display: "inline-block", height: "80px", width: "80px"}}/>
-        <Typography variant="h4" sx={{ textTransform: "uppercase", color: "black", fontWeight: "bold" }}>
-          United use foundation
+        <Typography variant={isMobile ? "h6" : "h4"} sx={{ textTransform: "uppercase", color: "black", fontWeight: "bold" }}>
+          United youth foundation
         </Typography>
       </Box>
       <Toolbar>
@@ -65,7 +65,7 @@ const Navigation = () => {
               <MenuIcon />
             </IconButton>
             <Drawer
-              anchor="right"
+              anchor="left"
               open={drawerOpen}
               onClose={toggleDrawer}
               ModalProps={{ keepMounted: true }}
