@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { TextField, Button, Container, Snackbar, Alert } from '@mui/material';
+import { TextField, Button, Container, Snackbar, Alert, Box, Typography } from '@mui/material';
 import { createUser } from '../../services/users';
 
 const defaultFormData = {
@@ -45,6 +45,17 @@ const defaultFormData = {
   
   return (
     <Container maxWidth="sm">
+        <Box my={2}>
+        <Typography variant="h4" component="h1" gutterBottom>
+          Welcome to UYF!
+        </Typography>
+        <Typography variant="body1" gutterBottom>
+          ATTENTION: After filling out this form, message our Instagram account or one of the founders (Kelly or Johanna) to be invited into our group chat on Discord.
+        </Typography>
+        <Typography variant="body1" color="textSecondary" gutterBottom>
+          *Being in the group chat is mandatory for all members as most of our event announcements will be posted via Discord*
+        </Typography>
+      </Box>
       <form onSubmit={handleSubmit}>
         <TextField
           fullWidth
@@ -99,7 +110,7 @@ const defaultFormData = {
           type="submit"
           variant="contained"
           color="primary"
-          style={{ marginTop: '20px' }}
+          sx={{my: 2}}
         >
           Submit
         </Button>
