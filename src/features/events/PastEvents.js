@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Grid, Paper, CardMedia, CardContent, Typography } from '@mui/material';
+import { Container, Grid, Paper, CardMedia, CardContent, Typography, useMediaQuery, useTheme } from '@mui/material';
 
 // Sample data for past events
 const events = [
@@ -26,17 +26,20 @@ const events = [
 ];
 
 function PastEvents() {
+  const theme = useTheme();
+  const isDesktop = useMediaQuery(theme.breakpoints.up('md'));
+
   return (
     <Container>
-      <Typography variant="h3" component="h1" align="center" gutterBottom>
-        Past Events
+      <Typography variant="h3" component="h1" align="center" gutterBottom mb={4}>
+        Current impact
       </Typography>
-      <Grid container spacing={4} justifyContent="center" mt={2}>
+      <Grid container spacing={4} justifyContent="center">
         {events.map((event, index) => (
           <Grid item key={index} xs={12}>
             <Paper elevation={3}>
               <Grid container spacing={2}>
-                {index % 2 === 0 ? (
+                {isDesktop && index % 2 === 0 ? (
                   <>
                     <Grid item xs={12} md={8}>
                       <CardContent>
