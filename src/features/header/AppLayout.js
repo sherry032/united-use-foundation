@@ -7,11 +7,14 @@ function AppLayout() {
             <header>
                 <Navigation/>
             </header>
-            <main>
+            <main className="App">
                 <Container sx={{py: 5}}>
                     <Outlet />
                 </Container>
             </main>
+            <footer className="App-footer">
+                <p>&copy; 2024 UYF. All rights reserved.</p>
+            </footer>
         </>
     );
   }

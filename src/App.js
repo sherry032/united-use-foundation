@@ -3,9 +3,9 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { ThemeProvider } from '@mui/material/styles';
 import AppLayout from './features/header/AppLayout';
 import HomePage from './features/home/HomePage';
-import AboutPage from './features/about/About';
 import JoinUsPage from './features/join-us/JoinUsPage';
 import { createTheme } from '@mui/material/styles';
+import PastEvents from './features/events/PastEvents';
 
 function App() {
   const theme = createTheme();
@@ -16,7 +16,7 @@ function App() {
         <Routes>
           <Route element={<AppLayout />}>
             <Route path="/" element={<HomePage />} />
-            <Route path="/about" element={<AboutPage />} />
+            <Route path="/events" element={<PastEvents />} />
             <Route path="/join" element={<JoinUsPage />} />
           </Route>
         </Routes>

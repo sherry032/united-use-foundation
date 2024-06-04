@@ -19,8 +19,8 @@ const routes = [
     path: "/"
     },
     {
-    name: "About us",
-    path: "/about"
+    name: "Past Events",
+    path: "/events"
     },
     {
     name: "Join us",

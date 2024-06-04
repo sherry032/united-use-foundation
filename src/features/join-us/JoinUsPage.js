@@ -1,15 +1,19 @@
 import React, { useState } from 'react';
-import { TextField, Button, Container, Typography } from '@mui/material';
+import { TextField, Button, Container, Snackbar, Alert } from '@mui/material';
 import { createUser } from '../../services/users';
 
 const defaultFormData = {
-    name: '',
-    email: ''
-};
-
-function JoinUsPage() {
-  const [formData, setFormData] = useState(defaultFormData);
-  const [showMsg, setShowMsg] = useState(false);
+    firstName: '',
+    lastName: '',
+    school: "",
+    grade: "",
+    typesOfVolunteering: "",
+    phoneNumber: ""
+  };
+  
+  function JoinUsPage() {
+    const [formData, setFormData] = useState(defaultFormData);
+    const [open, setOpen] = useState(false);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -24,32 +28,71 @@ function JoinUsPage() {
 
     try {
       const response = await createUser(formData);
-      setShowMsg(true);
+      handleOpen();
       setFormData(defaultFormData)
     } catch (error) {
       console.error('Error submitting form:', error);
     }
   };
-  
 
+  const handleOpen = () => setOpen(true);
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    setOpen(false);
+  };
+  
   return (
     <Container maxWidth="sm">
       <form onSubmit={handleSubmit}>
         <TextField
           fullWidth
           margin="normal"
-          label="Name"
-          name="name"
-          value={formData.name}
+          label="First name"
+          name="firstName"
+          value={formData.firstName}
           onChange={handleChange}
         />
         <TextField
           fullWidth
           margin="normal"
-          label="Email"
-          name="email"
-          type="email"
-          value={formData.email}
+          label="Last name"
+          name="lastName"
+          value={formData.lastName}
+          onChange={handleChange}
+        />
+        <TextField
+          fullWidth
+          margin="normal"
+          label="School"
+          name="school"
+          value={formData.school}
+          onChange={handleChange}
+        />
+        <TextField
+          fullWidth
+          margin="normal"
+          label="Grade"
+          name="grade"
+          value={formData.grade}
+          onChange={handleChange}
+        />
+        <TextField
+          fullWidth
+          margin="normal"
+          label="What are some types of volunteering activities that interest you? (This can be general)"
+          name="typesOfVolunteering"
+          value={formData.typesOfVolunteering}
+          onChange={handleChange}
+        />
+        <TextField
+          fullWidth
+          margin="normal"
+          label="Phone number"
+          name="phoneNumber"
+          type="text"
+          value={formData.phoneNumber}
           onChange={handleChange}
         />
         <Button
@@ -61,9 +104,11 @@ function JoinUsPage() {
           Submit
         </Button>
       </form>
-      {showMsg && <Typography sx={{color: "red", mt: 5}}>
-        Thanks for submitting the form.
-      </Typography>}
+      <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+        <Alert onClose={handleClose} severity="success" sx={{ width: '100%' }}>
+          Thank you for joining our organization!
+        </Alert>
+      </Snackbar>
     </Container>
   );
 }
